@@ -1,4 +1,4 @@
-const ApiError = require("../error/ApiError").default;
+const ApiError = require("../error/ApiError");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User, Basket } = require("../models/models");
@@ -22,7 +22,7 @@ class UserController {
     }
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({ email, role, password: hashPassword });
-    // const basket = await Basket.create({ userId: user.id });
+    const basket = await Basket.create({ userId: user.id });
     const token = generateJwt(user.id, user.email, user.role);
     return res.json({ token });
   }
@@ -41,7 +41,7 @@ class UserController {
     return res.json({ token });
   }
 
-  async check(req, res) {
+  async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email, req.user.role);
     return res.json({ token });
   }
