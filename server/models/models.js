@@ -1,22 +1,22 @@
-const sequelize = require("../db");
 const { DataTypes } = require("sequelize");
+const Sequelize = require("../db");
 
-const User = sequelize.define("user", {
+const User = Sequelize.define("user", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: "USER" },
 });
 
-const Basket = sequelize.define("basket", {
+const Basket = Sequelize.define("basket", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
-const BasketDevice = sequelize.define("basket_device", {
+const BasketDevice = Sequelize.define("basket_device", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
-const Device = sequelize.define("device", {
+const Device = Sequelize.define("device", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
@@ -24,28 +24,28 @@ const Device = sequelize.define("device", {
   img: { type: DataTypes.STRING, allowNull: false },
 });
 
-const Type = sequelize.define("type", {
+const Type = Sequelize.define("type", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
-const Brand = sequelize.define("brand", {
+const Brand = Sequelize.define("brand", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
-const Rating = sequelize.define("rating", {
+const Rating = Sequelize.define("rating", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   rate: { type: DataTypes.STRING, allowNull: false },
 });
 
-const DeviceInfo = sequelize.define("device_info", {
+const DeviceInfo = Sequelize.define("device_info", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: false },
 });
 
-const TypeBrand = sequelize.define("type_brand", {
+const TypeBrand = Sequelize.define("type_brand", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 

@@ -1,7 +1,7 @@
 const uuid = require("uuid");
 const path = require("path");
 const { Device, DeviceInfo } = require("../models/models");
-const ApiError = require("../error/ApiError");
+const ApiError = require("../error/ApiError").default;
 
 class DeviceController {
   async create(req, res) {
