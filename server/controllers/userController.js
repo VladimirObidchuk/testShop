@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { User, Basket } = require("../models/models");
 
 const generateJwt = (id, email, role) => {
-  return jwt.sing({ id, email, role }, process.env.SECRET_KEY, {
+  return jwt.sign({ id, email, role }, process.env.SECRET_KEY, {
     expiresIn: "24h",
   });
 };
