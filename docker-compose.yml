@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - test_shop_db:/var/lib/postgresql/data
+  backend:
+    build:
+      context: server
+    depends_on:
+      - db
+    environment:
+      PORT: ${PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db
+      DB_PORT: ${DB_PORT}
+      SECRET_KEY: ${DB_NAME}
+    ports:
+      - "5000:${PORT}"
+    volumes:
+      - ./server/src:/app/src
+  frontend:
+    build:
+      context: client
+    depends_on:
+      - db
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src:/app/src
+volumes:
+  test_shop_db:

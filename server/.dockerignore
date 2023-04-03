@@ -1,0 +1,18 @@
+.git
+.github
+.vscode
+coverage
+
+# Docker
+docker-compose.yml
+Dockerfile
+
+# Project files
+README.md
+
+# Node Files
+node_modules
+npm-debug.log
+npm-debug.log.*
+
+.env
